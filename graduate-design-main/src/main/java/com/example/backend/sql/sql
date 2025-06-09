@@ -1,0 +1,90 @@
+create table ta
+(
+    id              bigint auto_increment,
+    name            varchar(100) not null,
+    maxHoursPerWeek int          not null default 20,
+    maxHoursPerYear int          not null default 312,
+    createTime      datetime              default CURRENT_TIMESTAMP null,
+    updateTime      datetime              default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP,
+    primary key (id)
+);
+
+create table module
+(
+    id         bigint auto_increment,
+    name       varchar(100)                       not null,
+    createTime datetime default CURRENT_TIMESTAMP null,
+    updateTime datetime default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP,
+    primary key (id)
+);
+
+CREATE TABLE teaching_session
+(
+    id                     BIGINT AUTO_INCREMENT,
+    moduleId               BIGINT                             NOT NULL,
+    name                   VARCHAR(100)                       NOT NULL,
+    hoursPaidPerOccurrence INT                                NOT NULL,
+    numTAsPerSession       INT                                NOT NULL,
+    time_table_weeks       JSON                               NULL, -- 👈 新增字段
+    createTime             DATETIME DEFAULT CURRENT_TIMESTAMP NULL,
+    updateTime             DATETIME DEFAULT CURRENT_TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+
+create table timetable_entry
+(
+    id         bigint auto_increment,
+    sessionId  bigint                             not null,
+    room       varchar(100)                       not null,
+    weekDay    varchar(20)                        not null,
+    startTime  datetime                           not null,
+    endTime    datetime                           not null,
+    createTime datetime default CURRENT_TIMESTAMP null,
+    updateTime datetime default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP,
+    primary key (id)
+);
+
+create table session_occurrence
+(
+    id            bigint auto_increment,
+    sessionId     bigint                             not null,
+    taId          bigint                             not null,
+    timeTableWeek int                                not null,
+    createTime    datetime default CURRENT_TIMESTAMP null,
+    updateTime    datetime default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP,
+    primary key (id)
+);
+
+create table employment_approval
+(
+    id         bigint auto_increment,
+    taId       bigint                             not null,
+    moduleId   bigint                             not null,
+    rating     enum ('RED', 'AMBER', 'GREEN')     not null default 'RED',
+    createTime datetime default CURRENT_TIMESTAMP null,
+    updateTime datetime default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP,
+    primary key (id)
+);
+
+create table ta_allocation
+(
+    id               bigint auto_increment,
+    taId             bigint                             not null,
+    moduleId         bigint                             not null,
+    timetableEntryId bigint                             not null,
+    createTime       datetime default CURRENT_TIMESTAMP null,
+    updateTime       datetime default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP,
+    primary key (id)
+);
+
+create table room
+(
+    id                 bigint auto_increment primary key,
+    timetable_entry_id bigint       not null,
+    campus             varchar(100) not null,
+    location           varchar(100) not null,
+    capacity           int      default 50,
+    available          boolean  default true,
+    create_time        datetime default current_timestamp,
+    update_time        datetime default current_timestamp on update current_timestamp
+);
