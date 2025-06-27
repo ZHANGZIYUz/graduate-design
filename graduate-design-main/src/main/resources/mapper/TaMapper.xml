@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backend.mapper.TaMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.backend.model.domain.Ta">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="maxHoursPerWeek" column="maxHoursPerWeek" jdbcType="INTEGER"/>
+            <result property="maxHoursPerYear" column="maxHoursPerYear" jdbcType="INTEGER"/>
+            <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name,maxHoursPerWeek,
+        maxHoursPerYear,createTime,updateTime
+    </sql>
+</mapper>

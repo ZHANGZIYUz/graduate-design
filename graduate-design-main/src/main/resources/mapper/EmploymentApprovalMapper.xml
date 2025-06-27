@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backend.mapper.EmploymentApprovalMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.backend.model.domain.EmploymentApproval">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="taId" column="taId" jdbcType="BIGINT"/>
+            <result property="moduleId" column="moduleId" jdbcType="BIGINT"/>
+            <result property="rating" column="rating" jdbcType="OTHER"/>
+            <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,taId,moduleId,
+        rating,createTime,updateTime
+    </sql>
+</mapper>

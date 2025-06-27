@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backend.mapper.TeachingSessionMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.backend.model.domain.TeachingSession">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="moduleId" column="moduleId" jdbcType="BIGINT"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="hoursPaidPerOccurrence" column="hoursPaidPerOccurrence" jdbcType="INTEGER"/>
+            <result property="numTAsPerSession" column="numTAsPerSession" jdbcType="INTEGER"/>
+            <result property="time_table_weeks" column="time_table_weeks" jdbcType="VARCHAR"/>
+            <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,moduleId,name,
+        hoursPaidPerOccurrence,numTAsPerSession,time_table_weeks,
+        createTime,updateTime
+    </sql>
+</mapper>
